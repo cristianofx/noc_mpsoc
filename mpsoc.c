@@ -1,6 +1,8 @@
 #include <hellfire.h>
 #include <noc.h>
 
+/* Nomes: Cristiano Silva, Pedro Kuhn e Lucas Fraga  */
+
 /*
 name port   cpu
 t1 - 1111 -  0
@@ -20,11 +22,11 @@ void t1(void)
 {
 	int32_t i, msg = 0;
 	int8_t buf[500];
-	uint16_t val;
-	
+	uint16_t val, cpu, task, size;
+
 	if (hf_comm_create(hf_selfid(), 1111, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			if (hf_cpuid() != i){
@@ -66,11 +68,11 @@ void t2(void)
 {
 	int32_t i, msg = 0;
 	int8_t buf[500];
-	uint16_t val;
-	
+	uint16_t val, cpu, task, size;
+
 	if (hf_comm_create(hf_selfid(), 1222, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			//first try to get message
@@ -109,11 +111,11 @@ void t3(void)
 {
 	int32_t i, msg = 0;
 	int8_t buf[500];
-	uint16_t val;
-	
+	uint16_t val, cpu, task, size;
+
 	if (hf_comm_create(hf_selfid(), 1333, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			//first try to get message
@@ -149,11 +151,11 @@ void t4(void)
 {
 	int32_t i, msg = 0;
 	int8_t buf[500];
-	uint16_t val;
-	
+	uint16_t val, cpu, task, size;
+
 	if (hf_comm_create(hf_selfid(), 1444, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			//first try to get message
@@ -182,11 +184,11 @@ void t5(void)
 {
 	int32_t i, msg = 0;
 	int8_t buf[640];
-	uint16_t val;
-	
+	uint16_t val, cpu, task, size;
+
 	if (hf_comm_create(hf_selfid(), 1555, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			//first try to get message
@@ -215,11 +217,11 @@ void t6(void)
 {
 	int32_t i, msg = 0;
 	int8_t buf[640];
-	uint16_t val;
-	
+	uint16_t val, cpu, task, size;
+
 	if (hf_comm_create(hf_selfid(), 1666, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			//first try to get message
@@ -246,13 +248,13 @@ void t6(void)
 //t7 sends and receives
 void t7(void)
 {
-	int32_t i, msg = 0;
+	int32_t i= 0, msg = 0;
 	int8_t buf[1280];
-	uint16_t val;
-	
+	uint16_t val, cpu, task, size;
+
 	if (hf_comm_create(hf_selfid(), 1777, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			//first try to get message
@@ -279,13 +281,13 @@ void t7(void)
 //t8 sends and receives
 void t8(void)
 {
-	int32_t i, msg = 0;
+	int32_t i = 0, msg = 0;
 	int8_t buf[640];
-	uint16_t val;
-	
-	if (hf_comm_create(hf_selfid(), 1777, 0))
+	uint16_t val, cpu, task, size;
+
+	if (hf_comm_create(hf_selfid(), 1888, 0))
 		panic(0xff);
-	
+
 	while (1){
 		for (i = 0; i < hf_ncores(); i++, msg++){
 			//first try to get message
@@ -314,10 +316,10 @@ void t9(void)
 {
 	int8_t buf[640];
 	uint16_t cpu, task, size, val;
-	
+
 	if (hf_comm_create(hf_selfid(), 1999, 0))
 		panic(0xff);
-	
+
 	while (1){
 		val = hf_recvack(&cpu, &task, buf, &size, 0);
 		if (val)
